@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : calendarsupport
-Version  : 19.04.0
-Release  : 6
-URL      : https://download.kde.org/stable/applications/19.04.0/src/calendarsupport-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/calendarsupport-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/calendarsupport-19.04.0.tar.xz.sig
-Summary  : Calendar support library
+Version  : 19.04.1
+Release  : 7
+URL      : https://download.kde.org/stable/applications/19.04.1/src/calendarsupport-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/calendarsupport-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/calendarsupport-19.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: calendarsupport-data = %{version}-%{release}
@@ -35,6 +35,7 @@ BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : pimcommon-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : qttools-staticdev
 
 %description
 calendarsupport/next is the place for clean/documented/unit_tested code that is almost ready to go to kdepimlibs.
@@ -86,22 +87,23 @@ locales components for the calendarsupport package.
 
 
 %prep
-%setup -q -n calendarsupport-19.04.0
+%setup -q -n calendarsupport-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555715526
+export SOURCE_DATE_EPOCH=1557513005
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555715526
+export SOURCE_DATE_EPOCH=1557513005
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp COPYING %{buildroot}/usr/share/package-licenses/calendarsupport/COPYING
@@ -182,7 +184,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5CalendarSupport.so.5
-/usr/lib64/libKF5CalendarSupport.so.5.11.0
+/usr/lib64/libKF5CalendarSupport.so.5.11.1
 
 %files license
 %defattr(0644,root,root,0755)
