@@ -6,11 +6,11 @@
 #
 Name     : calendarsupport
 Version  : 19.08.1
-Release  : 11
+Release  : 12
 URL      : https://download.kde.org/stable/applications/19.08.1/src/calendarsupport-19.08.1.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.08.1/src/calendarsupport-19.08.1.tar.xz
 Source1 : https://download.kde.org/stable/applications/19.08.1/src/calendarsupport-19.08.1.tar.xz.sig
-Summary  : Calendar support library
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: calendarsupport-data = %{version}-%{release}
@@ -34,7 +34,7 @@ BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : pimcommon-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : qttools-staticdev
+BuildRequires : qttools-dev
 
 %description
 calendarsupport/next is the place for clean/documented/unit_tested code that is almost ready to go to kdepimlibs.
@@ -53,7 +53,6 @@ Group: Development
 Requires: calendarsupport-lib = %{version}-%{release}
 Requires: calendarsupport-data = %{version}-%{release}
 Provides: calendarsupport-devel = %{version}-%{release}
-Requires: calendarsupport = %{version}-%{release}
 Requires: calendarsupport = %{version}-%{release}
 
 %description dev
@@ -94,21 +93,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567783691
+export SOURCE_DATE_EPOCH=1569728110
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
 export FFLAGS="$CFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1567783691
+export SOURCE_DATE_EPOCH=1569728110
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp COPYING %{buildroot}/usr/share/package-licenses/calendarsupport/COPYING
