@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : calendarsupport
-Version  : 19.08.1
-Release  : 12
-URL      : https://download.kde.org/stable/applications/19.08.1/src/calendarsupport-19.08.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.1/src/calendarsupport-19.08.1.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.1/src/calendarsupport-19.08.1.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.08.2
+Release  : 13
+URL      : https://download.kde.org/stable/applications/19.08.2/src/calendarsupport-19.08.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.2/src/calendarsupport-19.08.2.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.2/src/calendarsupport-19.08.2.tar.xz.sig
+Summary  : Calendar support library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: calendarsupport-data = %{version}-%{release}
@@ -54,6 +54,7 @@ Requires: calendarsupport-lib = %{version}-%{release}
 Requires: calendarsupport-data = %{version}-%{release}
 Provides: calendarsupport-devel = %{version}-%{release}
 Requires: calendarsupport = %{version}-%{release}
+Requires: calendarsupport = %{version}-%{release}
 
 %description dev
 dev components for the calendarsupport package.
@@ -86,16 +87,17 @@ locales components for the calendarsupport package.
 
 
 %prep
-%setup -q -n calendarsupport-19.08.1
+%setup -q -n calendarsupport-19.08.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569728110
+export SOURCE_DATE_EPOCH=1570731788
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -106,7 +108,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1569728110
+export SOURCE_DATE_EPOCH=1570731788
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp COPYING %{buildroot}/usr/share/package-licenses/calendarsupport/COPYING
@@ -187,7 +189,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5CalendarSupport.so.5
-/usr/lib64/libKF5CalendarSupport.so.5.12.1
+/usr/lib64/libKF5CalendarSupport.so.5.12.2
 
 %files license
 %defattr(0644,root,root,0755)
