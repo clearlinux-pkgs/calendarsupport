@@ -6,7 +6,7 @@
 #
 Name     : calendarsupport
 Version  : 19.12.0
-Release  : 16
+Release  : 17
 URL      : https://download.kde.org/stable/release-service/19.12.0/src/calendarsupport-19.12.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/19.12.0/src/calendarsupport-19.12.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/19.12.0/src/calendarsupport-19.12.0.tar.xz.sig
@@ -24,12 +24,13 @@ BuildRequires : akonadi-mime-dev
 BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : kcalcore-dev
+BuildRequires : kcalendarcore-dev
 BuildRequires : kcalutils-dev
 BuildRequires : kcontacts-dev
 BuildRequires : kdepim-apps-libs-dev
 BuildRequires : kholidays-dev
 BuildRequires : kidentitymanagement-dev
+BuildRequires : kimap-dev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : pimcommon-dev
@@ -53,7 +54,6 @@ Group: Development
 Requires: calendarsupport-lib = %{version}-%{release}
 Requires: calendarsupport-data = %{version}-%{release}
 Provides: calendarsupport-devel = %{version}-%{release}
-Requires: calendarsupport = %{version}-%{release}
 Requires: calendarsupport = %{version}-%{release}
 
 %description dev
@@ -95,10 +95,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576600212
+export SOURCE_DATE_EPOCH=1576612731
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -109,7 +108,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576600212
+export SOURCE_DATE_EPOCH=1576612731
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp %{_builddir}/calendarsupport-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/calendarsupport/7c203dee3a03037da436df03c4b25b659c073976

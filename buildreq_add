@@ -1,16 +1,17 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-kdepim-apps-libs-dev
 akonadi-calendar-dev
 akonadi-contacts-dev
 akonadi-dev
 akonadi-mime-dev
 boost-dev
-kcalcore-dev
+kcalendarcore-dev
 kcalutils-dev
 kcontacts-dev
+kdepim-apps-libs-dev
 kholidays-dev
 kidentitymanagement-dev
+kimap-dev
 kmime-dev
 kpimtextedit-dev
 pimcommon-dev
