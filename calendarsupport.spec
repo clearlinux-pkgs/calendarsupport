@@ -6,7 +6,7 @@
 #
 Name     : calendarsupport
 Version  : 20.12.3
-Release  : 30
+Release  : 31
 URL      : https://download.kde.org/stable/release-service/20.12.3/src/calendarsupport-20.12.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/20.12.3/src/calendarsupport-20.12.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/20.12.3/src/calendarsupport-20.12.3.tar.xz.sig
@@ -30,7 +30,6 @@ BuildRequires : kcalendarcore-dev
 BuildRequires : kcalutils-dev
 BuildRequires : kcodecs-dev
 BuildRequires : kcontacts-dev
-BuildRequires : kdepim-apps-libs-dev
 BuildRequires : kguiaddons-dev
 BuildRequires : kholidays-dev
 BuildRequires : ki18n-dev
@@ -101,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618642384
+export SOURCE_DATE_EPOCH=1618859279
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -114,7 +113,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618642384
+export SOURCE_DATE_EPOCH=1618859279
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp %{_builddir}/calendarsupport-20.12.3/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/calendarsupport/2a638514c87c4923c0570c55822620fad56f2a33
