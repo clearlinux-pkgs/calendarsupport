@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : calendarsupport
-Version  : 22.12.2
-Release  : 53
-URL      : https://download.kde.org/stable/release-service/22.12.2/src/calendarsupport-22.12.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.12.2/src/calendarsupport-22.12.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.12.2/src/calendarsupport-22.12.2.tar.xz.sig
+Version  : 22.12.3
+Release  : 54
+URL      : https://download.kde.org/stable/release-service/22.12.3/src/calendarsupport-22.12.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.12.3/src/calendarsupport-22.12.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.12.3/src/calendarsupport-22.12.3.tar.xz.sig
 Summary  : Calendar support library
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -94,15 +94,15 @@ locales components for the calendarsupport package.
 
 
 %prep
-%setup -q -n calendarsupport-22.12.2
-cd %{_builddir}/calendarsupport-22.12.2
+%setup -q -n calendarsupport-22.12.3
+cd %{_builddir}/calendarsupport-22.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1676830076
+export SOURCE_DATE_EPOCH=1677805439
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -115,7 +115,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1676830076
+export SOURCE_DATE_EPOCH=1677805439
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp %{_builddir}/calendarsupport-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/calendarsupport/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9 || :
@@ -204,7 +204,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5CalendarSupport.so.5
-/usr/lib64/libKF5CalendarSupport.so.5.22.2
+/usr/lib64/libKF5CalendarSupport.so.5.22.3
 
 %files license
 %defattr(0644,root,root,0755)
