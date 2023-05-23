@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : calendarsupport
-Version  : 23.04.0
-Release  : 55
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/calendarsupport-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/calendarsupport-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/calendarsupport-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 56
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/calendarsupport-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/calendarsupport-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/calendarsupport-23.04.1.tar.xz.sig
 Summary  : Calendar support library
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -91,28 +91,42 @@ locales components for the calendarsupport package.
 
 
 %prep
-%setup -q -n calendarsupport-23.04.0
-cd %{_builddir}/calendarsupport-23.04.0
+%setup -q -n calendarsupport-23.04.1
+cd %{_builddir}/calendarsupport-23.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682109802
+export SOURCE_DATE_EPOCH=1684875536
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682109802
+export SOURCE_DATE_EPOCH=1684875536
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp %{_builddir}/calendarsupport-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/calendarsupport/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -125,10 +139,14 @@ cp %{_builddir}/calendarsupport-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.
 cp %{_builddir}/calendarsupport-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/calendarsupport/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/calendarsupport-%{version}/README.md.license %{buildroot}/usr/share/package-licenses/calendarsupport/cadc9e08cb956c041f87922de84b9206d9bbffb2 || :
 cp %{_builddir}/calendarsupport-%{version}/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/calendarsupport/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 %find_lang calendarsupport
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -140,6 +158,7 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKPim5CalendarSupport.so
 /usr/include/KPim5/CalendarSupport/CalendarSupport/ArchiveDialog
 /usr/include/KPim5/CalendarSupport/CalendarSupport/CalPrintDefaultPlugins
 /usr/include/KPim5/CalendarSupport/CalendarSupport/CalPrintPluginBase
@@ -203,8 +222,10 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKPim5CalendarSupport.so.5
+/V3/usr/lib64/libKPim5CalendarSupport.so.5.23.1
 /usr/lib64/libKPim5CalendarSupport.so.5
-/usr/lib64/libKPim5CalendarSupport.so.5.23.0
+/usr/lib64/libKPim5CalendarSupport.so.5.23.1
 
 %files license
 %defattr(0644,root,root,0755)
