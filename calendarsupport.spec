@@ -7,7 +7,7 @@
 #
 Name     : calendarsupport
 Version  : 23.04.1
-Release  : 56
+Release  : 57
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/calendarsupport-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/calendarsupport-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/calendarsupport-23.04.1.tar.xz.sig
@@ -99,7 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684875536
+export SOURCE_DATE_EPOCH=1685486545
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -126,7 +126,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684875536
+export SOURCE_DATE_EPOCH=1685486545
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/calendarsupport
 cp %{_builddir}/calendarsupport-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/calendarsupport/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -158,7 +158,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5CalendarSupport.so
 /usr/include/KPim5/CalendarSupport/CalendarSupport/ArchiveDialog
 /usr/include/KPim5/CalendarSupport/CalendarSupport/CalPrintDefaultPlugins
 /usr/include/KPim5/CalendarSupport/CalendarSupport/CalPrintPluginBase
@@ -222,7 +221,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5CalendarSupport.so.5
 /V3/usr/lib64/libKPim5CalendarSupport.so.5.23.1
 /usr/lib64/libKPim5CalendarSupport.so.5
 /usr/lib64/libKPim5CalendarSupport.so.5.23.1
