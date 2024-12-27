@@ -58,8 +58,5 @@ libKPim6CalendarSupport.so.6:CalendarSupport::MessageWidget::MessageWidget(QWidg
 libKPim6CalendarSupport.so.6:CalendarSupport::MessageWidget::hideEvent(QHideEvent*)
 libKPim6CalendarSupport.so.6:CalendarSupport::MessageWidget::showEvent(QShowEvent*)
 libKPim6CalendarSupport.so.6:CalendarSupport::MessageWidget::~MessageWidget()
-libKPim6CalendarSupport.so.6:CalendarSupport::NoteEditDialog::NoteEditDialog(QWidget*)
-libKPim6CalendarSupport.so.6:CalendarSupport::NoteEditDialog::accept()
-libKPim6CalendarSupport.so.6:CalendarSupport::NoteEditDialog::~NoteEditDialog()
 libKPim6CalendarSupport.so.6:CalendarSupport::calendarSingleton(bool)
 libKPim6CalendarSupport.so.6:CalendarSupport::holiday(QDate)
